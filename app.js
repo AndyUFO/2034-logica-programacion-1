@@ -1,10 +1,19 @@
 //variables
-let numeroSecreto = 3;
+let maxNumeroSecreto = parseInt(
+  prompt("¿Cual es el maximo numero que quieres adivinar:?")
+);
+let numeroSecreto = Math.floor(Math.random() * maxNumeroSecreto + 1);
 let numeroDeUsuario = 0;
 let intentos = 1;
-let palabraVeces = "vez";
+let maximosIntentos = 6;
+
+console.log("El maximo numero secreto es :" + maxNumeroSecreto);
+console.log("El numero secreto generado es :" + numeroSecreto);
+
 while (numeroDeUsuario != numeroSecreto) {
-  numeroDeUsuario = prompt("¿Me indicas un numero entre 1 y 10 por favor:?");
+  numeroDeUsuario = parseInt(
+    prompt(`¿Me indicas un numero entre 1 y ${maxNumeroSecreto} por favor:?`)
+  );
 
   console.log(numeroDeUsuario);
 
@@ -13,7 +22,9 @@ while (numeroDeUsuario != numeroSecreto) {
     */
   if (numeroDeUsuario == numeroSecreto) {
     alert(
-      `Acertaste, el numero es ${numeroDeUsuario} lo hiciste en ${intentos} ${palabraVeces}`
+      `Acertaste, el numero es ${numeroDeUsuario} lo hiciste en ${intentos} ${
+        intentos == 1 ? "intento" : "intentos"
+      }`
     );
   } else {
     if (numeroDeUsuario > numeroSecreto) {
@@ -22,11 +33,10 @@ while (numeroDeUsuario != numeroSecreto) {
       alert("El numero secreto es mayor");
     }
     intentos++;
-    palabraVeces = "veces";
-    if (intentos > 3) {
-      alert("Llegaste al numero maximo de intentos");
+
+    if (intentos > maximosIntentos) {
+      alert(`Llegaste al numero maximo de intentos ${maximosIntentos}`);
       break;
     }
-    //alert("Lo siento, intenta nuevamente");
   }
 }
